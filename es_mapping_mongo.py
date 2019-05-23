@@ -6,7 +6,7 @@ import pymongo
 def write(index,res):   
 	with open(index , 'a') as f:
 		writer = csv.DictWriter(
-		f, fieldnames=["Column", "Type"])
+		f, fieldnames = ["Column", "Type"])
 		writer.writeheader()
 		for key in res.keys():
 			f.write("%s,%s\n"%(key,res[key]))
@@ -31,26 +31,21 @@ class ES:
 		X = res.keys()
 		res = res[X[0]]['mappings']['jdbc']['properties']
 		for i in res:
-			res[i]=res[i]['type']
+			res[i] = res[i]['type']
 		return res
 
 
 
 def main():
 	mg = MongoClient()
+	es = ES()
 	print(mg.myclient)
 	config = mg.find()['index']
 	print(config)
-	# for item in config:
-	# 	print(item)
 	for index_obj in config :
 		index = index_obj.keys()[0]
-		file = index_obj[index]
-		# print index
-		# print file
-		res1=ES()
-		res=res1.mapping(index)
-		# print res
+		file = index_obj[index]		
+		res = es.mapping(index)
 		write(file,res)
 
 if __name__=="__main__":
