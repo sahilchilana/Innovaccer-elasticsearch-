@@ -1,0 +1,9 @@
+{
+    "index":[
+        {"pd_org_comparision":"pd_org_comparision_mapping.csv"},
+        {"pd_attribution_comparsion" : "pd_attribution_comparsion.csv"},
+        {"pd_activity_comparision":"pd_activity_comparision.csv"}
+    ],
+   
+    "read_data":"AHN_Migration_delta_sheet.xlsx"
+}
